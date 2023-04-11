@@ -8,30 +8,26 @@ console.log(food);
 // null
 // let num = [2,8,0,23,5,45,76]
 // Target = 23
-function divideArray(num){
-if (num.legth<=1){
-        return num;
-    }
-    let middle = Math.floor(num.length/2);
-    let left = num.slice(0,middle);
-    let right = num.slice(middle);
-    return sortedArray(divideArray(left),divideArray(right));
-}
-function sortedArray(left,right){
-    let emptyArray = [];
-    while(left.length && right.length){
-        if(left[0]<right[0]){
-            emptyArray.push(left.shift());
+function binary (num, target){
+    let  left = 0;
+    let right = num.length -1;
+    while(left <= right){
+        let middle = Math.floor((left + left)/2);
+        if (num [middle] === target){
+            return middle;
+        }
+        else if (num[middle] < target){
+            left = middle+1;
         }
         else{
-            emptyArray.push(right.shift())
+            right = middle-1;
         }
     }
-    return [...emptyArray,...left,...right]
+    return null
 }
 let num = [2,8,0,23,5,45,76];
 let target = [23];
-console.log(divideArray(num));
+console.log(binary(num,target))
 // Given years between 2000 and 2023, console all the leap years in the following
 // sentence, i.e “2020 is a leap year” if not console log i.e “2001 is not a leap year”
 let year = (2000,2023);
